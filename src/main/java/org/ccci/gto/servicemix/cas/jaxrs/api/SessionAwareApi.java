@@ -6,8 +6,10 @@ import javax.ws.rs.core.UriInfo;
 
 import org.ccci.gto.servicemix.cas.SessionManager;
 import org.ccci.gto.servicemix.cas.model.Session;
+import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class SessionAwareApi {
+    @Autowired
     private SessionManager sessionManager;
 
     /**
