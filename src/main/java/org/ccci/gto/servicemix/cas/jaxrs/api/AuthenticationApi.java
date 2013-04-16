@@ -15,8 +15,8 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
-import org.apache.commons.lang.StringUtils;
 import org.ccci.gto.servicemix.cas.model.Session;
+import org.jasig.cas.client.util.CommonUtils;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
 import org.jasig.cas.client.validation.TicketValidator;
@@ -31,7 +31,7 @@ public class AuthenticationApi extends SessionAwareApi {
 
     private TicketValidator validator;
 
-    private String serviceUri;
+    private String serviceUri = null;
 
     /**
      * @return the serviceUrl
@@ -40,7 +40,7 @@ public class AuthenticationApi extends SessionAwareApi {
     @Path("service")
     public String getServiceUri(@Context final UriInfo uri) {
         // use any configured serviceUri
-        if (!StringUtils.isBlank(this.serviceUri)) {
+        if (this.serviceUri != null) {
             return this.serviceUri;
         }
 
@@ -51,12 +51,12 @@ public class AuthenticationApi extends SessionAwareApi {
     @POST
     @Path("login")
     public Response login(@Context final UriInfo uri, @FormParam(PARAM_TICKET) final String ticket) {
-        if (!StringUtils.isBlank(ticket)) {
+        if (CommonUtils.isNotBlank(ticket)) {
             try {
                 final Assertion assertion = this.validator.validate(ticket, this.getServiceUri(uri));
                 final String guid = (String) assertion.getPrincipal().getAttributes().get(ATTR_GUID);
 
-                if (!StringUtils.isBlank(guid)) {
+                if (CommonUtils.isNotBlank(guid)) {
                     final Session session = this.getSessionManager().createSession(guid);
                     return Response.ok(session.getId()).build();
                 }
