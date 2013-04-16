@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.ccci.gto.servicemix</groupId>
+    <artifactId>servicemix-parent</artifactId>
+    <version>7-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>servicemix-cas-auth</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+
+  <name>CAS Authentication support</name>
+  <description>A servicemix bundle that handles CAS Authentication and Session Management</description>
+
+  <scm>
+    <connection>scm:git:git@git.gcx.org:java/servicemix/cas-auth.git</connection>
+    <developerConnection>scm:git:git@git.gcx.org:java/servicemix/cas-auth.git</developerConnection>
+    <tag>HEAD</tag>
+  </scm>
+
+  <properties>
+    <openjpa.version>2.2.1</openjpa.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.jasig.cas.client</groupId>
+      <artifactId>cas-client-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.openjpa</groupId>
+      <artifactId>openjpa</artifactId>
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>javax.ws.rs</groupId>
+      <artifactId>jsr311-api</artifactId>
+      <version>1.1.1</version>
+    </dependency>
+  </dependencies>
+
+  <repositories>
+    <repository>
+      <id>maven.gcx.org</id>
+      <url>https://maven.gcx.org</url>
+    </repository>
+  </repositories>
+</project>
