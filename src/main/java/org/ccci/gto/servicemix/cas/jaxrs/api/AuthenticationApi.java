@@ -34,7 +34,7 @@ public class AuthenticationApi extends SessionAwareApi {
     private String serviceUri = null;
 
     /**
-     * @return the serviceUrl
+     * @return the serviceUri
      */
     @GET
     @Path("service")
@@ -75,8 +75,8 @@ public class AuthenticationApi extends SessionAwareApi {
     }
 
     /**
-     * @param serviceUrl
-     *            the serviceUrl to set
+     * @param serviceUri
+     *            The service URI to use for authentication
      */
     public void setServiceUri(final String serviceUri) {
         this.serviceUri = serviceUri;
@@ -84,7 +84,7 @@ public class AuthenticationApi extends SessionAwareApi {
 
     /**
      * @param validator
-     *            the validator to set
+     *            The CAS TicketValidator to use when validating tickets
      */
     public void setValidator(final TicketValidator validator) {
         this.validator = validator;
