@@ -57,4 +57,13 @@
       <url>https://maven.gcx.org</url>
     </repository>
   </repositories>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.openjpa</groupId>
+        <artifactId>openjpa-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>
