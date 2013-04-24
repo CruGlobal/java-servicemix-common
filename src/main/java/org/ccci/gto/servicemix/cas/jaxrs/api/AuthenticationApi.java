@@ -22,6 +22,7 @@ import org.jasig.cas.client.validation.TicketValidationException;
 import org.jasig.cas.client.validation.TicketValidator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 @Path("auth")
 public class AuthenticationApi extends SessionAwareApi {
@@ -29,6 +30,7 @@ public class AuthenticationApi extends SessionAwareApi {
 
     private static final String ATTR_GUID = "guid";
 
+    @Autowired
     private TicketValidator validator;
 
     private String serviceUri = null;
@@ -40,7 +42,7 @@ public class AuthenticationApi extends SessionAwareApi {
     @Path("service")
     public String getServiceUri(@Context final UriInfo uri) {
         // use any configured serviceUri
-        if (this.serviceUri != null) {
+        if (CommonUtils.isNotBlank(this.serviceUri)) {
             return this.serviceUri;
         }
 
