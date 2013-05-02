@@ -28,7 +28,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 public class AuthenticationApi extends SessionAwareApi {
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationApi.class);
 
-    private static final String ATTR_GUID = "guid";
+    private static final String ATTR_GUID = "ssoGuid";
 
     @Autowired
     private TicketValidator validator;
