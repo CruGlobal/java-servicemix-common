@@ -20,7 +20,7 @@
   </bean>
 
   <bean id="ticketValidator" class="org.ccci.gto.cas.client.validation.TheKeyProxyTicketValidator">
-    <constructor-arg value="${cas.url:https://thekey.me/cas}" />
+    <constructor-arg value="${cas.url:https://thekey.me/cas/}" />
     <property name="acceptAnyProxy" value="true" />
   </bean>
 
