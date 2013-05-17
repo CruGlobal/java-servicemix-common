@@ -8,7 +8,7 @@ import org.ccci.gto.servicemix.common.SessionManager;
 import org.ccci.gto.servicemix.common.model.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
-public abstract class SessionAwareApi {
+public abstract class SessionAwareApi extends AbstractApi {
     @Autowired
     private SessionManager sessionManager;
 
