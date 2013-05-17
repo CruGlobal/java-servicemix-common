@@ -33,21 +33,13 @@ public class AuthenticationApi extends SessionAwareApi {
     @Autowired
     private TicketValidator validator;
 
-    private String serviceUri = null;
-
     /**
      * @return the serviceUri
      */
     @GET
     @Path("service")
     public String getServiceUri(@Context final UriInfo uri) {
-        // use any configured serviceUri
-        if (CommonUtils.isNotBlank(this.serviceUri)) {
-            return this.serviceUri;
-        }
-
-        // default to the url for the web service
-        return uri.getBaseUri().toString();
+        return this.getBaseUriBuilder(uri).path(AuthenticationApi.class).build().toString();
     }
 
     @POST
@@ -74,14 +66,6 @@ public class AuthenticationApi extends SessionAwareApi {
     public Response logout(@PathParam(PARAM_SESSION) final String sessionId) {
         this.getSessionManager().removeSession(sessionId);
         return Response.ok().build();
-    }
-
-    /**
-     * @param serviceUri
-     *            The service URI to use for authentication
-     */
-    public void setServiceUri(final String serviceUri) {
-        this.serviceUri = serviceUri;
     }
 
     /**

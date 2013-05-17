@@ -16,19 +16,36 @@ public abstract class AbstractApi {
         this.baseUri = baseUri;
     }
 
-    protected UriBuilder getBaseUri(final UriInfo uri) {
-        if (this.baseUri == null) {
-            return uri.getBaseUriBuilder();
-        } else {
-            return UriBuilder.fromUri(this.baseUri);
+    protected URI getBaseUri(final UriInfo uri) {
+        if (this.baseUri != null) {
+            return this.baseUri;
         }
+
+        return uri.getBaseUri();
     }
 
-    protected UriBuilder getRequestUri(final UriInfo uri) {
-        if (this.baseUri == null) {
-            return uri.getRequestUriBuilder();
-        } else {
-            return UriBuilder.fromUri(this.baseUri.resolve(uri.getBaseUri().relativize(uri.getRequestUri())));
+    protected UriBuilder getBaseUriBuilder(final UriInfo uri) {
+        if (this.baseUri != null) {
+            return UriBuilder.fromUri(this.baseUri);
+
         }
+
+        return uri.getBaseUriBuilder();
+    }
+
+    protected URI getRequestUri(final UriInfo uri) {
+        if (this.baseUri != null) {
+            this.baseUri.resolve(uri.getBaseUri().relativize(uri.getRequestUri()));
+        }
+
+        return uri.getRequestUri();
+    }
+
+    protected UriBuilder getRequestUriBuilder(final UriInfo uri) {
+        if (this.baseUri != null) {
+            return UriBuilder.fromUri(this.getRequestUri(uri));
+        }
+
+        return uri.getRequestUriBuilder();
     }
 }
