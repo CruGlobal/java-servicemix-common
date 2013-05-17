@@ -14,7 +14,7 @@
     <property name="locations">
       <list>
         <value>file:///${karaf.home}/etc/org.ccci.gto.servicemix.cfg</value>
-        <value>file:///${karaf.home}/etc/org.ccci.gto.servicemix.cas.cfg</value>
+        <value>file:///${karaf.home}/etc/org.ccci.gto.servicemix.common.cfg</value>
       </list>
     </property>
   </bean>
@@ -24,7 +24,7 @@
     <property name="acceptAnyProxy" value="true" />
   </bean>
 
-  <bean id="sessionManager" class="org.ccci.gto.servicemix.cas.SessionManagerImpl" />
+  <bean id="sessionManager" class="org.ccci.gto.servicemix.common.SessionManagerImpl" />
 
   <!-- JPA/DB configuration -->
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
@@ -37,7 +37,7 @@
   </bean>
 
   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <property name="persistenceUnitName" value="org.ccci.gto.servicemix.cas" />
+    <property name="persistenceUnitName" value="org.ccci.gto.servicemix.common" />
     <property name="dataSource" ref="dataSource" />
     <property name="jpaVendorAdapter">
       <bean class="org.springframework.orm.jpa.vendor.OpenJpaVendorAdapter" />
@@ -47,9 +47,7 @@
         <!-- OpenJPA properties -->
         <prop key="openjpa.jdbc.DBDictionary">mysql(SupportsForeignKeys=true)</prop>
         <prop key="openjpa.Log">slf4j</prop>
-        <!-- <prop key="openjpa.Log">DefaultLevel=WARN, Runtime=INFO, Tool=INFO, SQL=TRACE</prop> -->
         <prop key="openjpa.MetaDataRepository">Preload=true</prop>
-        <!-- <prop key="openjpa.jdbc.SynchronizeMappings">buildSchema(ForeignKeys=true)</prop> -->
       </props>
     </property>
   </bean>
@@ -65,5 +63,5 @@
 
   <!-- Exported services -->
   <osgi:service ref="ticketValidator" interface="org.jasig.cas.client.validation.TicketValidator" />
-  <osgi:service ref="sessionManager" interface="org.ccci.gto.servicemix.cas.SessionManager" />
+  <osgi:service ref="sessionManager" interface="org.ccci.gto.servicemix.common.SessionManager" />
 </beans>

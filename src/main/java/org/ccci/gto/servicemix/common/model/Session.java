@@ -1,4 +1,4 @@
-package org.ccci.gto.servicemix.cas.model;
+package org.ccci.gto.servicemix.common.model;
 
 import java.util.Date;
 

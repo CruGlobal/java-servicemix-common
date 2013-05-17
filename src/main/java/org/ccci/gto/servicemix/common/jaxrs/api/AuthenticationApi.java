@@ -1,8 +1,8 @@
-package org.ccci.gto.servicemix.cas.jaxrs.api;
+package org.ccci.gto.servicemix.common.jaxrs.api;
 
-import static org.ccci.gto.servicemix.cas.jaxrs.api.Constants.PARAM_SESSION;
-import static org.ccci.gto.servicemix.cas.jaxrs.api.Constants.PARAM_TICKET;
-import static org.ccci.gto.servicemix.cas.jaxrs.api.Constants.PATH_SESSION;
+import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_SESSION;
+import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_TICKET;
+import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PATH_SESSION;
 
 import javax.ws.rs.DELETE;
 import javax.ws.rs.FormParam;
@@ -15,7 +15,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
-import org.ccci.gto.servicemix.cas.model.Session;
+import org.ccci.gto.servicemix.common.model.Session;
 import org.jasig.cas.client.util.CommonUtils;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;

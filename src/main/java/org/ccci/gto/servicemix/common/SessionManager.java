@@ -1,6 +1,6 @@
-package org.ccci.gto.servicemix.cas;
+package org.ccci.gto.servicemix.common;
 
-import org.ccci.gto.servicemix.cas.model.Session;
+import org.ccci.gto.servicemix.common.model.Session;
 
 public interface SessionManager {
     Session createSession(String guid);

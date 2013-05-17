@@ -1,4 +1,4 @@
-package org.ccci.gto.servicemix.cas;
+package org.ccci.gto.servicemix.common;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -7,7 +7,7 @@ import java.util.UUID;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.ccci.gto.servicemix.cas.model.Session;
+import org.ccci.gto.servicemix.common.model.Session;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 

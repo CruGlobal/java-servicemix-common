@@ -11,7 +11,7 @@
   <artifactId>servicemix-gto-common</artifactId>
   <version>0.1.0-SNAPSHOT</version>
 
-  <name>GTO ServiceMix Common</name>
+  <name>ServiceMix Common</name>
   <description>A servicemix bundle that has common servicemix functionality</description>
 
   <scm>

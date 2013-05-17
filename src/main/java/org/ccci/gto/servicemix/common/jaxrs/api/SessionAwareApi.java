@@ -1,11 +1,11 @@
-package org.ccci.gto.servicemix.cas.jaxrs.api;
+package org.ccci.gto.servicemix.common.jaxrs.api;
 
-import static org.ccci.gto.servicemix.cas.jaxrs.api.Constants.PARAM_SESSION;
+import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_SESSION;
 
 import javax.ws.rs.core.UriInfo;
 
-import org.ccci.gto.servicemix.cas.SessionManager;
-import org.ccci.gto.servicemix.cas.model.Session;
+import org.ccci.gto.servicemix.common.SessionManager;
+import org.ccci.gto.servicemix.common.model.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class SessionAwareApi {
