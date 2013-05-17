@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="${project.artifactId}">
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="${project.artifactId}-${project.version}">
   <feature name="${project.artifactId}">
     <!-- CAS libraries -->
     <bundle>wrap:mvn:org.jasig.cas.client/cas-client-core/3.2.1</bundle>
