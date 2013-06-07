@@ -1,6 +1,5 @@
 package org.ccci.gto.servicemix.common.util;
 
-import java.net.URI;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,13 +31,6 @@ public final class ResponseUtils {
 
     public static ResponseBuilder unauthorized() {
         return unauthorized(AUTH_SCHEME_UNAUTHORIZED);
-    }
-
-    public static ResponseBuilder unauthorizedCas(final URI casServer, final URI service) {
-        final Map<String,String> params = new HashMap<String, String>();
-        params.put(AUTH_PARAM_CASSERVER, casServer.toString());
-        params.put(AUTH_PARAM_CASSERVICE, service.toString());
-        return unauthorized(AUTH_SCHEME_CAS, params);
     }
 
     public static ResponseBuilder unauthorized(final String scheme) {
