@@ -26,8 +26,8 @@ public final class ResponseUtils {
         AUTH_PARAMS_DEFAULT = Collections.unmodifiableMap(params);
     }
 
-    private static final Pattern PATTERN_TOKEN = Pattern.compile("^[^\\x00-\\x20\\7F()<>@,;:/?={}\"\\[\\]\\\\]+$");
-    private static final Pattern PATTERN_PARAM_VALUE = Pattern.compile("^[^\\x00-\\x1A\\7F()\"\\\\]+$");
+    private static final Pattern PATTERN_TOKEN = Pattern.compile("^[^\\x00-\\x20\\x7F()<>@,;:/?={}\"\\[\\]\\\\]+$");
+    private static final Pattern PATTERN_PARAM_VALUE = Pattern.compile("^[^\\x00-\\x1A\\x7F()\"\\\\]+$");
 
     public static ResponseBuilder unauthorized() {
         return unauthorized(AUTH_SCHEME_UNAUTHORIZED);
