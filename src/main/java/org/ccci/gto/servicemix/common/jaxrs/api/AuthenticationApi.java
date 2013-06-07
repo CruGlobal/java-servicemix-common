@@ -15,7 +15,6 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
 import org.ccci.gto.servicemix.common.model.Session;
-import org.ccci.gto.servicemix.common.util.ResponseUtils;
 import org.jasig.cas.client.util.CommonUtils;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
@@ -25,7 +24,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Path("auth")
-public class AuthenticationApi extends SessionAwareApi {
+public class AuthenticationApi extends CasSessionAwareApi {
     private static final Logger LOG = LoggerFactory.getLogger(AuthenticationApi.class);
 
     private static final String ATTR_GUID = "ssoGuid";
@@ -39,7 +38,7 @@ public class AuthenticationApi extends SessionAwareApi {
     @GET
     @Path("service")
     public String getServiceUri(@Context final UriInfo uri) {
-        return this.getBaseUriBuilder(uri).path(AuthenticationApi.class).build().toString();
+        return this.getCasServiceUri(uri).toString();
     }
 
     @POST
@@ -58,7 +57,8 @@ public class AuthenticationApi extends SessionAwareApi {
                 LOG.debug("exception validating ticket", e);
             }
         }
-        return ResponseUtils.unauthorized().build();
+
+        return this.invalidSession(uri).build();
     }
 
     @DELETE
