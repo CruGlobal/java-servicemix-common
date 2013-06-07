@@ -12,10 +12,10 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriInfo;
 
 import org.ccci.gto.servicemix.common.model.Session;
+import org.ccci.gto.servicemix.common.util.ResponseUtils;
 import org.jasig.cas.client.util.CommonUtils;
 import org.jasig.cas.client.validation.Assertion;
 import org.jasig.cas.client.validation.TicketValidationException;
@@ -58,7 +58,7 @@ public class AuthenticationApi extends SessionAwareApi {
                 LOG.debug("exception validating ticket", e);
             }
         }
-        return Response.status(Status.UNAUTHORIZED).build();
+        return ResponseUtils.unauthorized().build();
     }
 
     @DELETE
