@@ -3,6 +3,7 @@
   xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
   <persistence-unit name="org.ccci.gto.servicemix.common" transaction-type="RESOURCE_LOCAL">
     <class>org.ccci.gto.servicemix.common.model.Session</class>
+    <class>org.ccci.gto.servicemix.common.model.SessionPrimaryKey</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>

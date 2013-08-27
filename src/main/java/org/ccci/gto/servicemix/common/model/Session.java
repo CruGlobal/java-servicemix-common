@@ -3,42 +3,47 @@ package org.ccci.gto.servicemix.common.model;
 import java.util.Date;
 
 import javax.persistence.Column;
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
-import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 
 @Entity
 @NamedQuery(name = "Session.expireSessions", query = "DELETE FROM Session s WHERE s.expireTime < CURRENT_TIME")
 public class Session {
-    @Id
-    @Column(length = 36, updatable = false)
-    private String id;
+    @EmbeddedId
+    private SessionPrimaryKey key;
+
     @Column(length = 36, updatable = false)
     private String guid;
-    @Column(length = 20, updatable = false, nullable = false)
-    private String grouping;
 
     private Date expireTime;
 
     public Session() {
+        this(new SessionPrimaryKey(), null);
     }
 
     public Session(final String grouping, final String id, final String guid) {
-        this();
-        this.id = id;
+        this(new SessionPrimaryKey(grouping, id), guid);
+    }
+
+    public Session(final SessionPrimaryKey key, final String guid) {
+        this.key = key;
         this.guid = guid;
-        this.grouping = grouping;
     }
 
     /**
      * @return the id
      */
     public String getId() {
-        return this.id;
+        return this.key.getId();
     }
 
     public String getGrouping() {
-        return this.grouping;
+        return this.key.getGrouping();
+    }
+
+    public SessionPrimaryKey getKey() {
+        return this.key;
     }
 
     /**
