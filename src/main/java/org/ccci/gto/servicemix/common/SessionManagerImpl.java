@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
 public final class SessionManagerImpl implements SessionManager {
+    private static final String DEFAULT_GROUPING = "";
+
     @PersistenceContext
     private EntityManager em;
 
@@ -20,7 +22,12 @@ public final class SessionManagerImpl implements SessionManager {
 
     @Override
     public Session createSession(final String guid) {
-        final Session session = new Session(UUID.randomUUID().toString().replace("-", "").toLowerCase(), guid);
+        return this.createSession(DEFAULT_GROUPING, guid);
+    }
+
+    @Override
+    public Session createSession(final String grouping, final String guid) {
+        final Session session = new Session(grouping, UUID.randomUUID().toString().replace("-", "").toLowerCase(), guid);
         session.setExpireTime(this.getExpireTime());
         this.em.persist(session);
         return session;
@@ -28,8 +35,13 @@ public final class SessionManagerImpl implements SessionManager {
 
     @Override
     public Session getSession(final String sessionId) {
+        return this.getSession(DEFAULT_GROUPING, sessionId);
+    }
+
+    @Override
+    public Session getSession(final String grouping, final String sessionId) {
         final Session session = this.em.find(Session.class, sessionId);
-        if (session != null && !session.isExpired()) {
+        if (session != null && grouping != null && grouping.equals(session.getGrouping()) && !session.isExpired()) {
             session.setExpireTime(this.getExpireTime());
             return session;
         }
@@ -38,8 +50,13 @@ public final class SessionManagerImpl implements SessionManager {
 
     @Override
     public void removeSession(final String sessionId) {
+        this.removeSession(DEFAULT_GROUPING, sessionId);
+    }
+
+    @Override
+    public void removeSession(final String grouping, final String sessionId) {
         final Session session = this.em.find(Session.class, sessionId);
-        if (session != null) {
+        if (session != null && grouping != null && grouping.equals(session.getGrouping())) {
             this.em.remove(session);
         }
     }

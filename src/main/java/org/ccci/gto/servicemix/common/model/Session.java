@@ -15,16 +15,19 @@ public class Session {
     private String id;
     @Column(length = 36, updatable = false)
     private String guid;
+    @Column(length = 20, updatable = false, nullable = false)
+    private String grouping;
 
     private Date expireTime;
 
     public Session() {
     }
 
-    public Session(final String id, final String guid) {
+    public Session(final String grouping, final String id, final String guid) {
         this();
         this.id = id;
         this.guid = guid;
+        this.grouping = grouping;
     }
 
     /**
@@ -32,6 +35,10 @@ public class Session {
      */
     public String getId() {
         return this.id;
+    }
+
+    public String getGrouping() {
+        return this.grouping;
     }
 
     /**

@@ -17,10 +17,14 @@ import org.ccci.gto.servicemix.common.util.ResponseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class SessionAwareApi extends AbstractApi {
+    private static final String DEFAULT_SESSION_GROUP = "";
+
     @Autowired
     private SessionManager sessionManager;
 
-    protected String authRealm = AUTH_PARAM_REALM_DEFAULT;
+    private String sessionGrouping = DEFAULT_SESSION_GROUP;
+
+    private String authRealm = AUTH_PARAM_REALM_DEFAULT;
 
     /**
      * @return the sessionManager
@@ -33,6 +37,18 @@ public abstract class SessionAwareApi extends AbstractApi {
         this.authRealm = authRealm != null ? authRealm : AUTH_PARAM_REALM_DEFAULT;
     }
 
+    protected String getAuthRealm() {
+        return this.authRealm;
+    }
+
+    public void setSessionGrouping(final String grouping) {
+        this.sessionGrouping = grouping != null ? grouping : DEFAULT_SESSION_GROUP;
+    }
+
+    protected String getSessionGrouping() {
+        return this.sessionGrouping;
+    }
+
     /**
      * @param sessionManager
      *            the sessionManager to set
@@ -42,12 +58,12 @@ public abstract class SessionAwareApi extends AbstractApi {
     }
 
     protected Session getSession(final UriInfo uri) {
-        return sessionManager.getSession(uri.getPathParameters().getFirst(PARAM_SESSION));
+        return sessionManager.getSession(this.getSessionGrouping(), uri.getPathParameters().getFirst(PARAM_SESSION));
     }
 
     protected ResponseBuilder invalidSession(final UriInfo uri) {
         final Map<String, String> params = new HashMap<String, String>();
-        params.put(AUTH_PARAM_REALM, this.authRealm);
+        params.put(AUTH_PARAM_REALM, this.getAuthRealm());
         return ResponseUtils.unauthorized(AUTH_SCHEME_UNAUTHORIZED, params);
     }
 }

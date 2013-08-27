@@ -50,7 +50,7 @@ public class AuthenticationApi extends CasSessionAwareApi {
                 final String guid = (String) assertion.getPrincipal().getAttributes().get(ATTR_GUID);
 
                 if (CommonUtils.isNotBlank(guid)) {
-                    final Session session = this.getSessionManager().createSession(guid);
+                    final Session session = this.getSessionManager().createSession(this.getSessionGrouping(), guid);
                     return Response.ok(session.getId()).build();
                 }
             } catch (final TicketValidationException e) {
@@ -64,7 +64,7 @@ public class AuthenticationApi extends CasSessionAwareApi {
     @DELETE
     @Path("session/" + PATH_SESSION)
     public Response logout(@PathParam(PARAM_SESSION) final String sessionId) {
-        this.getSessionManager().removeSession(sessionId);
+        this.getSessionManager().removeSession(this.getSessionGrouping(), sessionId);
         return Response.ok().build();
     }
 
