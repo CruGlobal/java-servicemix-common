@@ -5,11 +5,11 @@
   <parent>
     <groupId>org.ccci.gto.servicemix</groupId>
     <artifactId>servicemix-parent</artifactId>
-    <version>10-SNAPSHOT</version>
+    <version>10</version>
   </parent>
 
   <artifactId>servicemix-gto-common</artifactId>
-  <version>0.2.0-SNAPSHOT</version>
+  <version>0.2.0</version>
 
   <name>ServiceMix Common</name>
   <description>A servicemix bundle that has common servicemix functionality</description>
@@ -17,7 +17,7 @@
   <scm>
     <connection>scm:git:git@git.gcx.org:java/servicemix/common.git</connection>
     <developerConnection>scm:git:git@git.gcx.org:java/servicemix/common.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>v0.2.0</tag>
   </scm>
 
   <properties>
