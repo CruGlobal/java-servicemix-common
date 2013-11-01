@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>servicemix-gto-common</artifactId>
-  <version>0.3.0-SNAPSHOT</version>
+  <version>0.3.0</version>
 
   <name>ServiceMix Common</name>
   <description>A servicemix bundle that has common servicemix functionality</description>
@@ -17,7 +17,7 @@
   <scm>
     <connection>scm:git:git@git.gcx.org:java/servicemix/common.git</connection>
     <developerConnection>scm:git:git@git.gcx.org:java/servicemix/common.git</developerConnection>
-    <tag>HEAD</tag>
+    <tag>v0.3.0</tag>
   </scm>
 
   <properties>
