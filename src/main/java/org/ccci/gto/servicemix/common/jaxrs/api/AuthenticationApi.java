@@ -1,5 +1,7 @@
 package org.ccci.gto.servicemix.common.jaxrs.api;
 
+import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.GUID_GUEST;
+import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_GUEST;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_SESSION;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_TICKET;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PATH_SESSION;
@@ -32,6 +34,12 @@ public class AuthenticationApi extends CasSessionAwareApi {
     @Autowired
     private TicketValidator validator;
 
+    private boolean guestAccessEnabled = false;
+
+    public final void setGuestAccessEnabled(final boolean guestAccessEnabled) {
+        this.guestAccessEnabled = guestAccessEnabled;
+    }
+
     /**
      * @return the serviceUri
      */
@@ -43,7 +51,8 @@ public class AuthenticationApi extends CasSessionAwareApi {
 
     @POST
     @Path("login")
-    public Response login(@Context final UriInfo uri, @FormParam(PARAM_TICKET) final String ticket) {
+    public Response login(@Context final UriInfo uri, @FormParam(PARAM_TICKET) final String ticket,
+            @FormParam(PARAM_GUEST) final boolean guest) {
         if (CommonUtils.isNotBlank(ticket)) {
             try {
                 final Assertion assertion = this.validator.validate(ticket, this.getServiceUri(uri));
@@ -56,6 +65,9 @@ public class AuthenticationApi extends CasSessionAwareApi {
             } catch (final TicketValidationException e) {
                 LOG.debug("exception validating ticket", e);
             }
+        } else if (this.guestAccessEnabled && guest) {
+            final Session session = this.getSessionManager().createSession(this.getSessionGrouping(), GUID_GUEST);
+            return Response.ok(session.getId()).build();
         }
 
         return this.invalidSession(uri).build();

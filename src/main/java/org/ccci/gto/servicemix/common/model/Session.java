@@ -13,7 +13,7 @@ public class Session {
     @EmbeddedId
     private SessionPrimaryKey key;
 
-    @Column(length = 36, updatable = false)
+    @Column(length = 36, updatable = false, nullable = false)
     private String guid;
 
     private Date expireTime;
@@ -51,6 +51,10 @@ public class Session {
      */
     public String getGuid() {
         return this.guid;
+    }
+
+    public boolean isGuest() {
+        return "GUEST".equals(this.guid);
     }
 
     public boolean isExpired() {
