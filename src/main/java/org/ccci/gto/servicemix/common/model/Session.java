@@ -1,5 +1,7 @@
 package org.ccci.gto.servicemix.common.model;
 
+import static org.ccci.gto.servicemix.common.Constants.GUID_GUEST;
+
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -54,7 +56,7 @@ public class Session {
     }
 
     public boolean isGuest() {
-        return "GUEST".equals(this.guid);
+        return GUID_GUEST.equals(this.guid);
     }
 
     public boolean isExpired() {

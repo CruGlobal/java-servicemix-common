@@ -1,6 +1,6 @@
 package org.ccci.gto.servicemix.common.jaxrs.api;
 
-import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.GUID_GUEST;
+import static org.ccci.gto.servicemix.common.Constants.GUID_GUEST;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_GUEST;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_SESSION;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_TICKET;
