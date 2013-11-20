@@ -59,24 +59,24 @@ public class AuthenticationApi extends CasSessionAwareApi {
                 final String guid = (String) assertion.getPrincipal().getAttributes().get(ATTR_GUID);
 
                 if (CommonUtils.isNotBlank(guid)) {
-                    final Session session = this.getSessionManager().createSession(this.getSessionGrouping(), guid);
+                    final Session session = this.getSessionManager().createSession(this.getApiGroup(), guid);
                     return Response.ok(session.getId()).build();
                 }
             } catch (final TicketValidationException e) {
                 LOG.debug("exception validating ticket", e);
             }
         } else if (this.guestAccessEnabled && guest) {
-            final Session session = this.getSessionManager().createSession(this.getSessionGrouping(), GUID_GUEST);
+            final Session session = this.getSessionManager().createSession(this.getApiGroup(), GUID_GUEST);
             return Response.ok(session.getId()).build();
         }
 
-        return this.invalidSession(uri).build();
+        return this.unauthorized(uri).build();
     }
 
     @DELETE
     @Path("session/" + PATH_SESSION)
     public Response logout(@PathParam(PARAM_SESSION) final String sessionId) {
-        this.getSessionManager().removeSession(this.getSessionGrouping(), sessionId);
+        this.getSessionManager().removeSession(this.getApiGroup(), sessionId);
         return Response.ok().build();
     }
 

@@ -28,7 +28,7 @@ public abstract class CasSessionAwareApi extends SessionAwareApi {
     }
 
     @Override
-    protected ResponseBuilder invalidSession(final UriInfo uri) {
+    protected ResponseBuilder unauthorized(final UriInfo uri) {
         final Map<String, String> params = new HashMap<String, String>();
         params.put(AUTH_PARAM_REALM, this.getAuthRealm());
         params.put(AUTH_PARAM_CASSERVER, this.casBaseUri);
