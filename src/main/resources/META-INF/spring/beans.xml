@@ -26,6 +26,8 @@
 
   <bean id="sessionManager" class="org.ccci.gto.servicemix.common.SessionManagerImpl" />
 
+  <bean id="clientManager" class="org.ccci.gto.servicemix.common.ClientManagerImpl" />
+
   <!-- JPA/DB configuration -->
   <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
     <property name="driverClassName" value="${database.driver:com.mysql.jdbc.Driver}" />
@@ -62,6 +64,7 @@
   <!-- end Transaction configuration -->
 
   <!-- Exported services -->
-  <osgi:service ref="ticketValidator" interface="org.jasig.cas.client.validation.TicketValidator" />
+  <osgi:service ref="clientManager" interface="org.ccci.gto.servicemix.common.ClientManager" />
   <osgi:service ref="sessionManager" interface="org.ccci.gto.servicemix.common.SessionManager" />
+  <osgi:service ref="ticketValidator" interface="org.jasig.cas.client.validation.TicketValidator" />
 </beans>
