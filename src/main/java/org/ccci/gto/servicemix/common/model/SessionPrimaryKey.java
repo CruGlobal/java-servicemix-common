@@ -34,7 +34,7 @@ public class SessionPrimaryKey implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = super.hashCode();
+        int hash = 0;
         hash = (hash * 31) + (this.grouping != null ? this.grouping.hashCode() : 0);
         hash = (hash * 31) + (this.id != null ? this.id.hashCode() : 0);
         return hash;
