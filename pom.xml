@@ -83,6 +83,12 @@
       <scope>runtime</scope>
     </dependency>
 
+    <!-- CXF dependency -->
+    <dependency>
+      <groupId>org.apache.cxf</groupId>
+      <artifactId>cxf-rt-frontend-jaxrs</artifactId>
+    </dependency>
+
     <!-- Miscellaneous API's -->
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>

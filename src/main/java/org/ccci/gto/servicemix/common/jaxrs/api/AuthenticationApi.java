@@ -16,6 +16,7 @@ import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 
+import org.apache.cxf.jaxrs.ext.MessageContext;
 import org.ccci.gto.servicemix.common.model.Session;
 import org.jasig.cas.client.util.CommonUtils;
 import org.jasig.cas.client.validation.Assertion;
@@ -45,17 +46,17 @@ public class AuthenticationApi extends CasSessionAwareApi {
      */
     @GET
     @Path("service")
-    public String getServiceUri(@Context final UriInfo uri) {
-        return this.getCasServiceUri(uri).toString();
+    public String getServiceUri(@Context final MessageContext cxt, @Context final UriInfo uri) {
+        return this.getCasServiceUri(cxt, uri).toString();
     }
 
     @POST
     @Path("login")
-    public Response login(@Context final UriInfo uri, @FormParam(PARAM_TICKET) final String ticket,
-            @FormParam(PARAM_GUEST) final boolean guest) {
+    public Response login(@Context final MessageContext cxt, @Context final UriInfo uri,
+            @FormParam(PARAM_TICKET) final String ticket, @FormParam(PARAM_GUEST) final boolean guest) {
         if (CommonUtils.isNotBlank(ticket)) {
             try {
-                final Assertion assertion = this.validator.validate(ticket, this.getServiceUri(uri));
+                final Assertion assertion = this.validator.validate(ticket, this.getCasServiceUri(cxt, uri).toString());
                 final String guid = (String) assertion.getPrincipal().getAttributes().get(ATTR_GUID);
 
                 if (CommonUtils.isNotBlank(guid)) {
@@ -70,7 +71,7 @@ public class AuthenticationApi extends CasSessionAwareApi {
             return Response.ok(session.getId()).build();
         }
 
-        return this.unauthorized(uri).build();
+        return this.unauthorized(cxt, uri).build();
     }
 
     @DELETE
