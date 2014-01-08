@@ -1,5 +1,6 @@
 package org.ccci.gto.servicemix.common.jaxrs.api;
 
+import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 import static org.ccci.gto.servicemix.common.Constants.GUID_GUEST;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_GUEST;
 import static org.ccci.gto.servicemix.common.jaxrs.api.Constants.PARAM_SESSION;
@@ -12,6 +13,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
@@ -46,12 +48,14 @@ public class AuthenticationApi extends CasSessionAwareApi {
      */
     @GET
     @Path("service")
+    @Produces(TEXT_PLAIN)
     public String getServiceUri(@Context final MessageContext cxt, @Context final UriInfo uri) {
         return this.getCasServiceUri(cxt, uri).toString();
     }
 
     @POST
     @Path("login")
+    @Produces(TEXT_PLAIN)
     public Response login(@Context final MessageContext cxt, @Context final UriInfo uri,
             @FormParam(PARAM_TICKET) final String ticket, @FormParam(PARAM_GUEST) final boolean guest) {
         if (CommonUtils.isNotBlank(ticket)) {
