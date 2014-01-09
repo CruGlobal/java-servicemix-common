@@ -8,7 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.ccci.gto.servicemix.common.model.Session;
-import org.ccci.gto.servicemix.common.model.SessionPrimaryKey;
+import org.ccci.gto.servicemix.common.model.Session.PrimaryKey;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -41,7 +41,7 @@ public final class SessionManagerImpl implements SessionManager {
 
     @Override
     public Session getSession(final String grouping, final String sessionId) {
-        final Session session = this.em.find(Session.class, new SessionPrimaryKey(grouping, sessionId));
+        final Session session = this.em.find(Session.class, new PrimaryKey(grouping, sessionId));
         if (session != null && !session.isExpired()) {
             session.setExpireTime(this.getExpireTime());
             return session;

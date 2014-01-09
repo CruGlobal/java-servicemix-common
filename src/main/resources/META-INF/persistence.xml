@@ -5,7 +5,7 @@
     <class>org.ccci.gto.servicemix.common.model.Client</class>
     <class>org.ccci.gto.servicemix.common.model.Client$PrimaryKey</class>
     <class>org.ccci.gto.servicemix.common.model.Session</class>
-    <class>org.ccci.gto.servicemix.common.model.SessionPrimaryKey</class>
+    <class>org.ccci.gto.servicemix.common.model.Session$PrimaryKey</class>
     <exclude-unlisted-classes>true</exclude-unlisted-classes>
   </persistence-unit>
 </persistence>
