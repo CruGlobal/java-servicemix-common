@@ -1,5 +1,7 @@
 package org.ccci.gto.servicemix.common.model;
 
+import static org.ccci.gto.servicemix.common.Constants.INVALID_CLIENT;
+
 import java.io.Serializable;
 
 import javax.persistence.Column;
@@ -77,8 +79,8 @@ public class Client {
 
         @Column(length = 20, updatable = false, nullable = false)
         private String grouping = null;
-        @Column(updatable = false, nullable = false)
-        private long id = 0;
+        @Column(updatable = false, nullable = false, unique = true)
+        private long id = INVALID_CLIENT;
 
         public PrimaryKey() {
         }
