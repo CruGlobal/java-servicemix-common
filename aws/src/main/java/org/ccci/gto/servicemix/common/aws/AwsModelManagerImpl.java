@@ -7,7 +7,7 @@ import org.ccci.gto.servicemix.common.aws.model.SnsSubscription;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-public class AwsManagerImpl implements AwsManager {
+public class AwsModelManagerImpl implements AwsModelManager {
     @PersistenceContext
     private EntityManager em;
 

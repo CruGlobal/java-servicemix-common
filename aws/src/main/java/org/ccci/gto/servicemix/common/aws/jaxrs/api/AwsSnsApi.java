@@ -23,7 +23,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.lang.StringUtils;
-import org.ccci.gto.servicemix.common.aws.AwsManager;
+import org.ccci.gto.servicemix.common.aws.AwsModelManager;
 import org.ccci.gto.servicemix.common.aws.model.SnsSubscription;
 import org.ccci.gto.servicemix.common.jaxrs.api.AbstractApi;
 import org.slf4j.Logger;
@@ -46,7 +46,7 @@ public class AwsSnsApi extends AbstractApi {
     private AmazonSNS sns;
 
     @Autowired
-    private AwsManager manager;
+    private AwsModelManager manager;
 
     private final SignatureChecker snsVerify = new SignatureChecker();
 

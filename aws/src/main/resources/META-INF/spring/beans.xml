@@ -8,7 +8,7 @@
                       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd">
   <context:annotation-config />
 
-  <bean id="awsManager" class="org.ccci.gto.servicemix.common.aws.AwsManagerImpl" />
+  <bean id="awsModelManager" class="org.ccci.gto.servicemix.common.aws.AwsModelManagerImpl" />
 
   <!-- various configuration beans -->
   <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -58,5 +58,5 @@
   <!-- end Transaction configuration -->
 
   <!-- Exported services -->
-  <osgi:service ref="awsManager" interface="org.ccci.gto.servicemix.common.aws.AwsManager" />
+  <osgi:service ref="awsModelManager" interface="org.ccci.gto.servicemix.common.aws.AwsModelManager" />
 </beans>
