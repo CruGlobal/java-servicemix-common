@@ -38,9 +38,9 @@ import com.amazonaws.services.sns.util.SignatureChecker;
 import com.amazonaws.util.json.JSONException;
 import com.amazonaws.util.json.JSONObject;
 
-@Path("amazon/sns")
-public class AmazonSnsApi extends AbstractApi {
-    private static final Logger LOG = LoggerFactory.getLogger(AmazonSnsApi.class);
+@Path("aws/sns")
+public class AwsSnsApi extends AbstractApi {
+    private static final Logger LOG = LoggerFactory.getLogger(AwsSnsApi.class);
 
     @Autowired
     private AmazonSNS sns;
