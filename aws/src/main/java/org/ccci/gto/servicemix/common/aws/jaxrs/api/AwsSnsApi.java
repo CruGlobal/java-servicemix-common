@@ -11,7 +11,9 @@ import java.net.URL;
 import java.security.PublicKey;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 import javax.ws.rs.POST;
@@ -24,6 +26,7 @@ import javax.ws.rs.core.Response.Status;
 
 import org.apache.commons.lang.StringUtils;
 import org.ccci.gto.servicemix.common.aws.AwsModelManager;
+import org.ccci.gto.servicemix.common.aws.model.SnsNotification;
 import org.ccci.gto.servicemix.common.aws.model.SnsSubscription;
 import org.ccci.gto.servicemix.common.jaxrs.api.AbstractApi;
 import org.slf4j.Logger;
@@ -42,19 +45,25 @@ import com.amazonaws.util.json.JSONObject;
 public class AwsSnsApi extends AbstractApi {
     private static final Logger LOG = LoggerFactory.getLogger(AwsSnsApi.class);
 
-    @Autowired
-    private AmazonSNS sns;
-
-    @Autowired
-    private AwsModelManager manager;
-
-    private final SignatureChecker snsVerify = new SignatureChecker();
+    private static final SignatureChecker snsVerify = new SignatureChecker();
 
     private static final Set<String> validDomains = new HashSet<>();
     static {
         for (final Region region : RegionUtils.getRegionsForService("sns")) {
             validDomains.add(region.getServiceEndpoint("sns"));
         }
+    }
+
+    @Autowired
+    private AmazonSNS sns;
+
+    @Autowired
+    private AwsModelManager manager;
+
+    private Map<String, SnsNotificationHandler> handlers = Collections.emptyMap();
+
+    public final void setHandlers(final Map<String, SnsNotificationHandler> handlers) {
+        this.handlers = handlers != null ? handlers : Collections.<String, SnsNotificationHandler> emptyMap();
     }
 
     @POST
@@ -85,8 +94,9 @@ public class AwsSnsApi extends AbstractApi {
             confirmSubscription(msg);
             break;
         case "Notification":
-            if (verifySubscription(arn, msg)) {
-                processNotification(msg);
+            final SnsSubscription subscription = this.getSubscription(arn, msg);
+            if (subscription != null) {
+                processNotification(subscription, msg);
             }
             break;
         default:
@@ -119,10 +129,14 @@ public class AwsSnsApi extends AbstractApi {
         }
     }
 
-    private boolean verifySubscription(final String arn, final JSONObject msg) {
+    private SnsSubscription getSubscription(final String arn, final JSONObject msg) {
         final SnsSubscription subscription = this.manager.getSnsSubscription(this.getApiGroup(), arn);
-        return subscription != null
-                && StringUtils.equals(subscription.getTopicArn(), msg.optString(SNS_MESSAGE_TOPIC_ARN));
+        if (subscription != null
+                && StringUtils.equals(subscription.getTopicArn(), msg.optString(SNS_MESSAGE_TOPIC_ARN))) {
+            return subscription;
+        }
+
+        return null;
     }
 
     private boolean confirmSubscription(final JSONObject msg) {
@@ -133,11 +147,19 @@ public class AwsSnsApi extends AbstractApi {
             this.manager.createSnsSubscription(this.getApiGroup(), result.getSubscriptionArn(), topicArn);
             return true;
         } catch (final Exception e) {
+            LOG.debug("error creating subscription", e);
             return false;
         }
     }
 
-    private void processNotification(final JSONObject msg) {
-        LOG.debug("Notification: {}", msg);
+    private void processNotification(final SnsSubscription subscription, final JSONObject msg) {
+        final SnsNotificationHandler handler = this.handlers.get(subscription.getTopicArn());
+        if (handler != null) {
+            handler.handle(new SnsNotification(subscription, msg));
+        }
+    }
+
+    public static interface SnsNotificationHandler {
+        void handle(SnsNotification notification);
     }
 }
