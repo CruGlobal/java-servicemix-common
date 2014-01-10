@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.ccci.gto.servicemix</groupId>
     <artifactId>servicemix-parent</artifactId>
-    <version>12</version>
+    <version>13-SNAPSHOT</version>
   </parent>
 
   <artifactId>servicemix-gto-common-parent</artifactId>
@@ -16,6 +16,7 @@
   <description>ServiceMix bundles that contain common ServiceMix functionality</description>
 
   <modules>
+    <module>aws</module>
     <module>core</module>
     <module>feature</module>
   </modules>
@@ -25,6 +26,16 @@
     <developerConnection>scm:git:git@git.gcx.org:java/servicemix/common.git</developerConnection>
     <tag>HEAD</tag>
   </scm>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.ccci.gto.servicemix</groupId>
+        <artifactId>servicemix-gto-common-core</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <repositories>
     <repository>

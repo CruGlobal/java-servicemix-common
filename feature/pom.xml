@@ -21,6 +21,13 @@
       <classifier>features</classifier>
       <type>xml</type>
     </dependency>
+    <dependency>
+      <groupId>org.ccci.gto.servicemix</groupId>
+      <artifactId>servicemix-gto-common-aws</artifactId>
+      <version>${project.version}</version>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
   </dependencies>
 
   <build>
