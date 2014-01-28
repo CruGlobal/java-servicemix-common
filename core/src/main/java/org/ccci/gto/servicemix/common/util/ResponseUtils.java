@@ -1,5 +1,6 @@
 package org.ccci.gto.servicemix.common.util;
 
+import java.net.URI;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
@@ -84,5 +85,12 @@ public final class ResponseUtils {
 
         // return the response
         return response;
+    }
+
+    public static ResponseBuilder temporaryRedirect(final URI location) {
+        // #EKKOHUB-11: use a 302 redirect instead of temporaryRedirect to work around a bug in Android < 4.4
+        // https://code.google.com/p/android/issues/detail?id=41739
+        // return Response.temporaryRedirect(location);
+        return Response.status(302).location(location);
     }
 }
