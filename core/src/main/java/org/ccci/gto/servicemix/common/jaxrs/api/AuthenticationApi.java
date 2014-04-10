@@ -82,7 +82,7 @@ public class AuthenticationApi extends CasSessionAwareApi {
             final MultivaluedMap<String, String> form) {
         final Session session = this.loginInternal(cxt, uri, form);
         if (session != null) {
-            return Response.ok(session.getId()).build();
+            return Response.ok(session.getId()).type(TEXT_PLAIN).build();
         } else {
             return this.unauthorized(cxt, uri).build();
         }

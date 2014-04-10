@@ -11,7 +11,8 @@ public class RequestUtils {
         }
 
         if (headers != null) {
-            return headers.getAcceptableMediaTypes().isEmpty();
+            // check to see if the user didn't provide an Accept header
+            return headers.getRequestHeader(HttpHeaders.ACCEPT).isEmpty();
         } else {
             return false;
         }
