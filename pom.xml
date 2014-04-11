@@ -9,7 +9,7 @@
   </parent>
 
   <artifactId>servicemix-gto-common-parent</artifactId>
-  <version>0.4.1</version>
+  <version>0.5.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>ServiceMix GTO Common</name>
@@ -24,7 +24,7 @@
   <scm>
     <connection>scm:git:git@git.gcx.org:java/servicemix/common.git</connection>
     <developerConnection>scm:git:git@git.gcx.org:java/servicemix/common.git</developerConnection>
-    <tag>v0.4.1</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <dependencyManagement>
