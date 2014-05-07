@@ -7,6 +7,9 @@
 
     <feature>servicemix-gto-db</feature>
 
+    <!-- Google libraries -->
+    <bundle>mvn:com.google.guava/guava/${google-guava.version}</bundle>
+
     <bundle>mvn:${project.groupId}/${project.artifactId}/${project.version}</bundle>
   </feature>
 </features>
