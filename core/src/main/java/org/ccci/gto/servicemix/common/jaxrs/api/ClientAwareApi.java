@@ -17,6 +17,10 @@ public abstract class ClientAwareApi extends AccessTokenBasedApi {
         this.clientManager = clientManager;
     }
 
+    protected ClientManager getClientManager() {
+        return this.clientManager;
+    }
+
     @Override
     protected final String getAccessTokenPathParam() {
         return PARAM_API_KEY;
