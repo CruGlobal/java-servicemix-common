@@ -110,6 +110,10 @@
                 *,
                 org.ccci.gto.cas.client.validation,
 
+                <!-- Google Guava -->
+                <!-- we include these dependencies here to widen supported versions -->
+                com.google.common.base;version="[17.0,19)",
+
                 <!-- OpenJPA/JPA imports -->
                 javax.persistence.criteria,
                 javax.persistence.metamodel,
