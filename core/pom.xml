@@ -107,7 +107,6 @@
             <instructions>
               <DynamicImport-Package>com.mysql.jdbc</DynamicImport-Package>
               <Import-Package>
-                *,
                 org.ccci.gto.cas.client.validation,
 
                 <!-- Google Guava -->
@@ -130,6 +129,9 @@
                 org.aopalliance.aop,
                 org.springframework.aop,
                 org.springframework.aop.framework,
+
+                <!-- Include everything else not explicitly listed -->
+                *,
               </Import-Package>
             </instructions>
           </configuration>
