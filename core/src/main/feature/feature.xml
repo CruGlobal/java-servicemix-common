@@ -5,7 +5,7 @@
     <bundle>wrap:mvn:org.jasig.cas.client/cas-client-core/3.2.1</bundle>
     <bundle>mvn:org.ccci.gto/cas-client-integration-thekey/${thekey.cas.client.version}</bundle>
 
-    <feature>servicemix-gto-db</feature>
+    <feature>servicemix-gto-common-db</feature>
 
     <!-- Google libraries -->
     <bundle>mvn:com.google.guava/guava/${google-guava.version}</bundle>

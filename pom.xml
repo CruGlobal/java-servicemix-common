@@ -18,6 +18,7 @@
   <modules>
     <module>aws</module>
     <module>core</module>
+    <module>dependencies</module>
     <module>feature</module>
   </modules>
 

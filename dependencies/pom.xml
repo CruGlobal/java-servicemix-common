@@ -8,34 +8,15 @@
     <version>0.4.4-SNAPSHOT</version>
   </parent>
 
-  <artifactId>servicemix-gto-common</artifactId>
+  <artifactId>servicemix-gto-common-dependencies</artifactId>
   <packaging>feature</packaging>
 
-  <name>ServiceMix GTO Common Features</name>
+  <name>ServiceMix GTO Common Dependencies</name>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.ccci.gto.servicemix</groupId>
-      <artifactId>servicemix-gto-common-aws</artifactId>
-      <version>${project.version}</version>
-      <classifier>features</classifier>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>org.ccci.gto.servicemix</groupId>
-      <artifactId>servicemix-gto-common-core</artifactId>
-      <version>${project.version}</version>
-      <classifier>features</classifier>
-      <type>xml</type>
-    </dependency>
-    <dependency>
-      <groupId>org.ccci.gto.servicemix</groupId>
-      <artifactId>servicemix-gto-common-dependencies</artifactId>
-      <version>${project.version}</version>
-      <classifier>features</classifier>
-      <type>xml</type>
-    </dependency>
-  </dependencies>
+  <properties>
+    <global-registry-client.version>0.2.0</global-registry-client.version>
+    <gto.extension.persistence.version>0.3.1</gto.extension.persistence.version>
+  </properties>
 
   <build>
     <pluginManagement>
@@ -44,7 +25,7 @@
           <groupId>org.apache.karaf.tooling</groupId>
           <artifactId>karaf-maven-plugin</artifactId>
           <configuration>
-            <aggregateFeatures>true</aggregateFeatures>
+            <aggregateFeatures>false</aggregateFeatures>
           </configuration>
           <executions>
             <execution>

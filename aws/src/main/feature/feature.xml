@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="${project.artifactId}-${project.version}">
   <feature name="${project.artifactId}">
-    <feature>servicemix-gto-db</feature>
+    <feature>servicemix-gto-common-db</feature>
     <feature version="${project.version}">servicemix-gto-common-core</feature>
 
     <!-- AWS support -->

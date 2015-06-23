@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="${project.artifactId}-${project.version}">
+  <feature name="servicemix-gto-common-db" version="${project.version}">
+    <bundle>mvn:mysql/mysql-connector-java/${mysql.version}</bundle>
+    <feature>openjpa</feature>
+    <feature>spring-orm</feature>
+    <bundle>mvn:org.ccci.gto/extension-persistence/${gto.extension.persistence.version}</bundle>
+  </feature>
+
+  <feature name="aws" version="${aws.version}">
+    <bundle>wrap:mvn:org.apache.httpcomponents/httpcore/${httpcore.version}</bundle>
+    <bundle>wrap:mvn:org.apache.httpcomponents/httpclient/${httpclient.version}</bundle>
+    <bundle>mvn:commons-codec/commons-codec/${commons-codec.version}</bundle>
+    <bundle>mvn:com.fasterxml.jackson.core/jackson-core/${jackson.version}</bundle>
+    <bundle>mvn:com.fasterxml.jackson.core/jackson-databind/${jackson.version}</bundle>
+    <bundle>mvn:com.fasterxml.jackson.core/jackson-annotations/${jackson.version}</bundle>
+    <bundle>mvn:joda-time/joda-time/${joda-time.version}</bundle>
+    <bundle>wrap:mvn:com.sun.org.apache/jaxp-ri/1.4</bundle>
+    <bundle>mvn:com.amazonaws/aws-java-sdk-osgi/${aws.version}</bundle>
+  </feature>
+
+  <feature name="global-registry-client" version="${global-registry-client.version}">
+    <bundle>mvn:org.ccci.gto/global-registry-client-api/${global-registry-client.version}</bundle>
+    <bundle>mvn:org.ccci.gto/global-registry-client-jaxrs10/${global-registry-client.version}</bundle>
+    <bundle>mvn:org.ccci.gto/global-registry-client-serializer-json/${global-registry-client.version}</bundle>
+    <bundle>mvn:com.google.guava/guava/${google-guava.version}</bundle>
+    <bundle>mvn:joda-time/joda-time/${joda-time.version}</bundle>
+    <bundle>mvn:org.apache.servicemix.bundles/org.apache.servicemix.bundles.json/20140107_1</bundle>
+  </feature>
+</features>
