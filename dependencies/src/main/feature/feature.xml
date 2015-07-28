@@ -3,7 +3,7 @@
   <feature name="servicemix-gto-common-db" version="${project.version}">
     <bundle>mvn:mysql/mysql-connector-java/${mysql.version}</bundle>
     <feature>openjpa</feature>
-    <feature>spring-orm</feature>
+    <feature version="[3.2.4,4)">spring-orm</feature>
     <bundle>mvn:org.ccci.gto/extension-persistence/${gto.extension.persistence.version}</bundle>
   </feature>
 
