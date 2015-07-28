@@ -127,8 +127,8 @@
 
                 <!-- Spring AOP imports (Transactional) -->
                 org.aopalliance.aop,
-                org.springframework.aop,
-                org.springframework.aop.framework,
+                org.springframework.aop;version="${osgi.spring.version}",
+                org.springframework.aop.framework;version="${osgi.spring.version}",
 
                 <!-- Include everything else not explicitly listed -->
                 *,

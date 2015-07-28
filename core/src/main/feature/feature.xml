@@ -6,6 +6,7 @@
     <bundle>mvn:org.ccci.gto/cas-client-integration-thekey/${thekey.cas.client.version}</bundle>
 
     <feature>servicemix-gto-common-db</feature>
+    <feature version="${osgi.spring.version}">spring-tx</feature>
 
     <!-- Google libraries -->
     <bundle>mvn:com.google.guava/guava/${google-guava.version}</bundle>
